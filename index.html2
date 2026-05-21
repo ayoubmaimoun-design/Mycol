@@ -1,11 +1,124 @@
-Commit changes
-Q
-X
-There was an error committing your changes: A file with the same name already exists. Please choose a different name and try again.
-Commit message
-Add initial Arabic HTML template
-Extended description
-Add an optional extended description...
-Message and description suggested by Copilot.
-• Commit directly to the main branch
-• Create a new branch for this commit and start a pull request Learn more about pull
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>موقعي الاحترافي</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  direction: rtl;
+  background: #0f172a;
+  color: white;
+}
+
+/* الشريط العلوي */
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 30px;
+  background: #111827;
+  position: sticky;
+  top: 0;
+}
+
+nav a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: #38bdf8;
+}
+
+/* القسم الرئيسي */
+.hero {
+  text-align: center;
+  padding: 100px 20px;
+  background: linear-gradient(135deg, #1e3a8a, #0f172a);
+}
+
+.hero h1 {
+  font-size: 40px;
+}
+
+.btn {
+  padding: 10px 20px;
+  background: #38bdf8;
+  border: none;
+  color: black;
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 8px;
+}
+
+/* الأقسام */
+.section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.card {
+  background: #1f2937;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 10px;
+  display: inline-block;
+  width: 250px;
+}
+
+/* الفوتر */
+footer {
+  background: #111827;
+  text-align: center;
+  padding: 15px;
+  margin-top: 40px;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div><b>موقعي</b></div>
+  <div>
+    <a href="#">الرئيسية</a>
+    <a href="#about">حول</a>
+    <a href="#services">خدمات</a>
+    <a href="#contact">تواصل</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <h1>مرحباً بك في موقعي 🚀</h1>
+  <p>موقع احترافي يمكنك تطويره وربح المال منه</p>
+  <button class="btn" onclick="alert('مرحبا بك!')">ابدأ الآن</button>
+</div>
+
+<div id="about" class="section">
+  <h2>من نحن</h2>
+  <p>هذا موقع تجريبي يمكنك تطويره ليصبح مشروع حقيقي.</p>
+</div>
+
+<div id="services" class="section">
+  <h2>خدماتنا</h2>
+
+  <div class="card">تصميم مواقع</div>
+  <div class="card">تطوير تطبيقات</div>
+  <div class="card">متاجر إلكترونية</div>
+</div>
+
+<div id="contact" class="section">
+  <h2>تواصل معنا</h2>
+  <p>Email: example@gmail.com</p>
+</div>
+
+<footer>
+  © 2026 - جميع الحقوق محفوظة
+</footer>
+
+</body>
+</html>
