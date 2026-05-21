@@ -2,157 +2,186 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
-<title>الموقع الرئيسي</title>
-<link rel="stylesheet" href="style.css">
+<title>الموقع الاحترافي الشامل</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #0f172a;
+  color: white;
+  text-align: center;
+}
+
+nav {
+  background: #111827;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  padding: 10px 15px;
+  margin: 5px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #38bdf8;
+}
+
+.section {
+  display: none;
+  padding: 20px;
+}
+
+.card {
+  background: #1f2937;
+  padding: 15px;
+  margin: 10px auto;
+  width: 80%;
+  border-radius: 10px;
+}
+
+/* لعبة الثعبان */
+#gameArea {
+  width: 200px;
+  height: 200px;
+  background: #111827;
+  margin: auto;
+  position: relative;
+}
+
+#snake {
+  width: 20px;
+  height: 20px;
+  background: lime;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+</style>
 </head>
+
 <body>
 
-<header>
-<h1>🚀 موقع الألعاب والكريبتو</h1>
 <nav>
-<a href="index.html">Home</a>
-<a href="games.html">Games</a>
-<a href="crypto.html">Crypto</a>
-<a href="news.html">News</a>
-<a href="login.html">Login</a>
+  <div>🚀 الموقع الشامل</div>
+  <button onclick="show('home')">الرئيسية</button>
 </nav>
-</header>
 
-<div class="box">
-<h2>🔥 مرحباً بك</h2>
-<p>أفضل موقع ألعاب + أخبار + كريبتو</p>
+<!-- 🏠 الرئيسية -->
+<div id="home" class="section" style="display:block;">
+  <h1>اختر القسم</h1>
 
-<!-- AdSense مكان -->
-<div class="ad">
-  [مكان إعلان AdSense هنا]
+  <button onclick="show('games')">🎮 ألعاب</button>
+  <button onclick="show('news')">📰 أخبار</button>
+  <button onclick="show('login')">🔐 تسجيل الدخول</button>
+  <button onclick="show('ads')">💰 إعلانات</button>
 </div>
 
+<!-- 🎮 الألعاب -->
+<div id="games" class="section">
+  <h2>🎮 ألعاب بسيطة</h2>
+
+  <div class="card">
+    <h3>Snake</h3>
+    <div id="gameArea">
+      <div id="snake"></div>
+    </div>
+    <button onclick="moveSnake()">تحريك</button>
+  </div>
+
+  <div class="card">
+    <h3>Racing (عداد)</h3>
+    <p>اضغط لزيادة السرعة</p>
+    <button onclick="speed()">🚗 تسريع</button>
+    <p id="speed">0 km/h</p>
+  </div>
 </div>
 
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ar">
-<head>
-<meta charset="UTF-8">
-<title>الألعاب</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<header>
-<h1>🎮 الألعاب</h1>
-<nav>
-<a href="index.html">Home</a>
-<a href="games.html">Games</a>
-</nav>
-</header>
-
-<div class="box">
-
-<h2>🐍 لعبة الدودة</h2>
-<canvas id="snake" width="300" height="300"></canvas>
-
-<h2>🚗 لعبة السيارات</h2>
-<canvas id="car" width="300" height="300"></canvas>
-
+<!-- 📰 الأخبار -->
+<div id="news" class="section">
+  <h2>📰 أخبار (RSS)</h2>
+  <div id="newsBox">جاري التحميل...</div>
 </div>
 
-<script src="snake.js"></script>
-<script src="car.js"></script>
+<!-- 🔐 تسجيل الدخول -->
+<div id="login" class="section">
+  <h2>🔐 تسجيل دخول</h2>
 
-</body>
-</html>
-let canvas = document.getElementById("snake");
-let ctx = canvas.getContext("2d");
+  <input id="user" placeholder="اسم المستخدم">
+  <br><br>
+  <input id="pass" type="password" placeholder="كلمة المرور">
+  <br><br>
 
-let box = 15;
-let snake = [{x: 5*box, y: 5*box}];
-let food = {
-    x: Math.floor(Math.random()*20)*box,
-    y: Math.floor(Math.random()*20)*box
-};
-let dir = "RIGHT";
+  <button onclick="login()">دخول</button>
+  <p id="msg"></p>
+</div>
 
-document.addEventListener("keydown", (e)=>{
-if(e.key=="ArrowUp") dir="UP";
-if(e.key=="ArrowDown") dir="DOWN";
-if(e.key=="ArrowLeft") dir="LEFT";
-if(e.key=="ArrowRight") dir="RIGHT";
+<!-- 💰 الإعلانات -->
+<div id="ads" class="section">
+  <h2>💰 مكان الإعلانات</h2>
+  <div class="card">
+    هنا توضع إعلانات AdSense لاحقاً
+  </div>
+</div>
+
+<script>
+
+function show(id){
+  document.querySelectorAll('.section').forEach(s => s.style.display="none");
+  document.getElementById(id).style.display="block";
+}
+
+/* 🔐 تسجيل دخول بسيط */
+function login(){
+  let u = document.getElementById("user").value;
+  let p = document.getElementById("pass").value;
+
+  if(u && p){
+    document.getElementById("msg").innerText = "تم الدخول ✔️ (تجريبي)";
+  } else {
+    document.getElementById("msg").innerText = "❌ أدخل البيانات";
+  }
+}
+
+/* 🚗 لعبة السرعة */
+let spd = 0;
+function speed(){
+  spd += 10;
+  document.getElementById("speed").innerText = spd + " km/h";
+}
+
+/* 🐍 حركة بسيطة */
+let x = 0;
+function moveSnake(){
+  x += 20;
+  document.getElementById("snake").style.left = x + "px";
+}
+
+/* 📰 أخبار RSS */
+fetch("https://rss.nytimes.com/services/xml/rss/nyt/World.xml")
+.then(res => res.text())
+.then(data => {
+  let parser = new DOMParser();
+  let xml = parser.parseFromString(data, "text/xml");
+  let items = xml.querySelectorAll("item");
+
+  let html = "";
+  items.forEach((item, i) => {
+    if(i < 5){
+      html += `
+        <div class="card">
+          <h3>${item.querySelector("title").textContent}</h3>
+        </div>
+      `;
+    }
+  });
+
+  document.getElementById("newsBox").innerHTML = html;
 });
 
-function draw(){
-ctx.fillStyle="black";
-ctx.fillRect(0,0,300,300);
-
-ctx.fillStyle="red";
-ctx.fillRect(food.x,food.y,box,box);
-
-for(let i=0;i<snake.length;i++){
-ctx.fillStyle="lime";
-ctx.fillRect(snake[i].x,snake[i].y,box,box);
-}
-
-let head = snake[0];
-
-if(dir=="RIGHT") head.x+=box;
-if(dir=="LEFT") head.x-=box;
-if(dir=="UP") head.y-=box;
-if(dir=="DOWN") head.y+=box;
-
-if(head.x==food.x && head.y==food.y){
-food = {
-x: Math.floor(Math.random()*20)*box,
-y: Math.floor(Math.random()*20)*box
-};
-} else {
-snake.pop();
-}
-
-let newHead = {x:head.x,y:head.y};
-snake.unshift(newHead);
-}
-
-setInterval(draw,120);
-              let canvas2 = document.getElementById("car");
-let ctx2 = canvas2.getContext("2d");
-
-let x = 150;
-
-document.addEventListener("keydown",(e)=>{
-if(e.key=="ArrowLeft") x-=10;
-if(e.key=="ArrowRight") x+=10;
-});
-
-function drawCar(){
-ctx2.fillStyle="black";
-ctx2.fillRect(0,0,300,300);
-
-ctx2.fillStyle="blue";
-ctx2.fillRect(x,250,30,40);
-}
-
-setInterval(drawCar,50);
- <!DOCTYPE html>
-<html>
-<head>
-<title>Login</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<div class="box">
-<h2>🔐 تسجيل دخول</h2>
-
-<input id="user" placeholder="اسم المستخدم"><br><br>
-<input id="pass" type="password" placeholder="كلمة السر"><br><br>
-
-<button onclick="login()">دخول</button>
-
-</div>
-
-<script src="auth.js"></script>
+</script>
 
 </body>
 </html>
-<script async src="https://www.googletagservices.com/tag/js/gpt.js"></script>
