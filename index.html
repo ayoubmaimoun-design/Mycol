@@ -1,3 +1,48 @@
-<div style="background:#1f2937; padding:20px; margin:20px; color:white;">
-  💰 مكان الإعلانات هنا
+<div class="card">
+<h2>🤖 AI Assistant</h2>
+
+<input id="userInput" placeholder="اكتب سؤال..."
+style="width:100%;padding:10px;">
+
+<button class="btn" onclick="askAI()">
+إرسال
+</button>
+
+<p id="aiResponse"></p>
+</div>
+function askAI(){
+
+let input =
+document.getElementById("userInput").value;
+
+document.getElementById("aiResponse")
+.innerHTML =
+"الذكاء الاصطناعي يقول: " + input;
+
+}
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>Games</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1 style="text-align:center;">🎮 الألعاب</h1>
+
+<div class="card">
+<h2>Snake Game</h2>
+
+<canvas id="game" width="400" height="400"
+style="background:black;"></canvas>
+</div>
+
+<script src="snake.js"></script>
+
+</body>
+</html>
+<div class="card">
+إعلان هنا
 </div>
