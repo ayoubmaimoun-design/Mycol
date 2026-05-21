@@ -1,121 +1,158 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
-<title>الصفحة الرئيسية</title>
-
-<style>
-body {
-  margin: 0;
-  font-family: Arial;
-  background: #0f172a;
-  color: white;
-}
-
-/* الشريط العلوي */
-nav {
-  background: #111827;
-  padding: 15px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-nav h2 {
-  margin: 0;
-}
-
-.logout {
-  background: red;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-/* العنوان */
-.title {
-  text-align: center;
-  margin-top: 30px;
-}
-
-/* الأقسام */
-.container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 40px;
-}
-
-.card {
-  background: #1f2937;
-  width: 200px;
-  margin: 15px;
-  padding: 25px;
-  border-radius: 12px;
-  text-align: center;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.card:hover {
-  background: #38bdf8;
-  color: black;
-  transform: scale(1.05);
-}
-
-/* الفوتر */
-footer {
-  text-align: center;
-  margin-top: 50px;
-  padding: 20px;
-  background: #111827;
-}
-</style>
+<title>الموقع الرئيسي</title>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
+<header>
+<h1>🚀 موقع الألعاب والكريبتو</h1>
 <nav>
-  <h2>🚀 موقعي الاحترافي</h2>
-  <button class="logout" onclick="logout()">خروج</button>
+<a href="index.html">Home</a>
+<a href="games.html">Games</a>
+<a href="crypto.html">Crypto</a>
+<a href="news.html">News</a>
+<a href="login.html">Login</a>
 </nav>
+</header>
 
-<div class="title">
-  <h1>اختر ما تريد 👇</h1>
-  <p>مرحبا بك في لوحة التحكم</p>
+<div class="box">
+<h2>🔥 مرحباً بك</h2>
+<p>أفضل موقع ألعاب + أخبار + كريبتو</p>
+
+<!-- AdSense مكان -->
+<div class="ad">
+  [مكان إعلان AdSense هنا]
 </div>
 
-<div class="container">
-
-  <div class="card" onclick="go('games')">
-    🎮 ألعاب
-  </div>
-
-  <div class="card" onclick="go('programming')">
-    💻 برمجة
-  </div>
-
-  <div class="card" onclick="go('news')">
-    📰 أخبار
-  </div>
-
 </div>
-
-<footer>
-  © 2026 - جميع الحقوق محفوظة
-</footer>
-
-<script>
-function go(page){
-  alert("سيفتح قسم: " + page);
-}
-
-function logout(){
-  location.href = "index.html";
-}
-</script>
 
 </body>
-</html> 
+</html>
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>الألعاب</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+<h1>🎮 الألعاب</h1>
+<nav>
+<a href="index.html">Home</a>
+<a href="games.html">Games</a>
+</nav>
+</header>
+
+<div class="box">
+
+<h2>🐍 لعبة الدودة</h2>
+<canvas id="snake" width="300" height="300"></canvas>
+
+<h2>🚗 لعبة السيارات</h2>
+<canvas id="car" width="300" height="300"></canvas>
+
+</div>
+
+<script src="snake.js"></script>
+<script src="car.js"></script>
+
+</body>
+</html>
+let canvas = document.getElementById("snake");
+let ctx = canvas.getContext("2d");
+
+let box = 15;
+let snake = [{x: 5*box, y: 5*box}];
+let food = {
+    x: Math.floor(Math.random()*20)*box,
+    y: Math.floor(Math.random()*20)*box
+};
+let dir = "RIGHT";
+
+document.addEventListener("keydown", (e)=>{
+if(e.key=="ArrowUp") dir="UP";
+if(e.key=="ArrowDown") dir="DOWN";
+if(e.key=="ArrowLeft") dir="LEFT";
+if(e.key=="ArrowRight") dir="RIGHT";
+});
+
+function draw(){
+ctx.fillStyle="black";
+ctx.fillRect(0,0,300,300);
+
+ctx.fillStyle="red";
+ctx.fillRect(food.x,food.y,box,box);
+
+for(let i=0;i<snake.length;i++){
+ctx.fillStyle="lime";
+ctx.fillRect(snake[i].x,snake[i].y,box,box);
+}
+
+let head = snake[0];
+
+if(dir=="RIGHT") head.x+=box;
+if(dir=="LEFT") head.x-=box;
+if(dir=="UP") head.y-=box;
+if(dir=="DOWN") head.y+=box;
+
+if(head.x==food.x && head.y==food.y){
+food = {
+x: Math.floor(Math.random()*20)*box,
+y: Math.floor(Math.random()*20)*box
+};
+} else {
+snake.pop();
+}
+
+let newHead = {x:head.x,y:head.y};
+snake.unshift(newHead);
+}
+
+setInterval(draw,120);
+              let canvas2 = document.getElementById("car");
+let ctx2 = canvas2.getContext("2d");
+
+let x = 150;
+
+document.addEventListener("keydown",(e)=>{
+if(e.key=="ArrowLeft") x-=10;
+if(e.key=="ArrowRight") x+=10;
+});
+
+function drawCar(){
+ctx2.fillStyle="black";
+ctx2.fillRect(0,0,300,300);
+
+ctx2.fillStyle="blue";
+ctx2.fillRect(x,250,30,40);
+}
+
+setInterval(drawCar,50);
+ <!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="box">
+<h2>🔐 تسجيل دخول</h2>
+
+<input id="user" placeholder="اسم المستخدم"><br><br>
+<input id="pass" type="password" placeholder="كلمة السر"><br><br>
+
+<button onclick="login()">دخول</button>
+
+</div>
+
+<script src="auth.js"></script>
+
+</body>
+</html>
+<script async src="https://www.googletagservices.com/tag/js/gpt.js"></script>
