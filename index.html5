@@ -1,0 +1,121 @@
+ <!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>الصفحة الرئيسية</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #0f172a;
+  color: white;
+}
+
+/* الشريط العلوي */
+nav {
+  background: #111827;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav h2 {
+  margin: 0;
+}
+
+.logout {
+  background: red;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* العنوان */
+.title {
+  text-align: center;
+  margin-top: 30px;
+}
+
+/* الأقسام */
+.container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+.card {
+  background: #1f2937;
+  width: 200px;
+  margin: 15px;
+  padding: 25px;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.card:hover {
+  background: #38bdf8;
+  color: black;
+  transform: scale(1.05);
+}
+
+/* الفوتر */
+footer {
+  text-align: center;
+  margin-top: 50px;
+  padding: 20px;
+  background: #111827;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <h2>🚀 موقعي الاحترافي</h2>
+  <button class="logout" onclick="logout()">خروج</button>
+</nav>
+
+<div class="title">
+  <h1>اختر ما تريد 👇</h1>
+  <p>مرحبا بك في لوحة التحكم</p>
+</div>
+
+<div class="container">
+
+  <div class="card" onclick="go('games')">
+    🎮 ألعاب
+  </div>
+
+  <div class="card" onclick="go('programming')">
+    💻 برمجة
+  </div>
+
+  <div class="card" onclick="go('news')">
+    📰 أخبار
+  </div>
+
+</div>
+
+<footer>
+  © 2026 - جميع الحقوق محفوظة
+</footer>
+
+<script>
+function go(page){
+  alert("سيفتح قسم: " + page);
+}
+
+function logout(){
+  location.href = "index.html";
+}
+</script>
+
+</body>
+</html> 
